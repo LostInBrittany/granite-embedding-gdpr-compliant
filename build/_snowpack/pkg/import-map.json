@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "lit": "./lit.js",
+    "lit-html": "./lit-html.js"
+  }
+}

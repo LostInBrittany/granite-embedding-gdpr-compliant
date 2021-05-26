@@ -1,0 +1,41 @@
+{
+  "name": "@granite-elements/granite-youtube-gdpr-complaiant",
+  "version": "2.0.0",
+  "description": "A GDPR compliant YouTube viewer",
+  "main": "src/granite-youtube-gdpr-complaiant.js",
+  "module": "src/granite-youtube-gdpr-complaiant.js",
+  "scripts": {
+    "serve": "npx es-dev-server --node-resolve --watch",
+    "build": "snowpack build"
+  },
+  "keywords": [
+    "fate",
+    "dice",
+    "dice roller",
+    "roleplaying",
+    "roleplaying games",
+    "ttrpg",
+    "rpg",
+    "web",
+    "component",
+    "web component",
+    "LitElement",
+    "lit-element",
+    "lit"
+  ],
+  "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lostinbrittany/granite-youtube-gdpr-complaiant.git"
+  },
+  "homepage": "https://github.com/lostinbrittany/granite-youtube-gdpr-complaiant",
+  "license": "MIT",
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "lit": "^2.0.0-rc.1"
+  },
+  "devDependencies": {
+    "es-dev-server": "^2.1.0",
+    "snowpack": "^3.5.1"
+  }
+}
