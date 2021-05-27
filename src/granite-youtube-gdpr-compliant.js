@@ -107,7 +107,7 @@ export class youtubeGdprComplaiant extends LitElement {
         ${
           this.accepted ? 
           html`
-            <iframe id="video" src="http://youtube.com/embed/${this.video}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="video" src="https://youtube.com/embed/${this.video}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           ` : 
           html`
             <div id="overlay">
