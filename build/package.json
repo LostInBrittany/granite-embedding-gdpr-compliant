@@ -1,9 +1,9 @@
 {
-  "name": "@granite-elements/granite-youtube-gdpr-complaiant",
+  "name": "@granite-elements/granite-youtube-gdpr-compliant",
   "version": "2.0.0",
   "description": "A GDPR compliant YouTube viewer",
-  "main": "src/granite-youtube-gdpr-complaiant.js",
-  "module": "src/granite-youtube-gdpr-complaiant.js",
+  "main": "src/granite-youtube-gdpr-compliant.js",
+  "module": "src/granite-youtube-gdpr-compliant.js",
   "scripts": {
     "serve": "npx es-dev-server --node-resolve --watch",
     "build": "snowpack build"
@@ -26,9 +26,9 @@
   "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lostinbrittany/granite-youtube-gdpr-complaiant.git"
+    "url": "git://github.com/lostinbrittany/granite-youtube-gdpr-compliant.git"
   },
-  "homepage": "https://github.com/lostinbrittany/granite-youtube-gdpr-complaiant",
+  "homepage": "https://github.com/lostinbrittany/granite-youtube-gdpr-compliant",
   "license": "MIT",
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.5.0",

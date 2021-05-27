@@ -1,4 +1,4 @@
-import { LitElement, html, css } from '../_snowpack/pkg/lit.js';
+import { LitElement, html, css } from 'lit';
 
 
 export class youtubeGdprComplaiant extends LitElement {
@@ -134,6 +134,6 @@ export class youtubeGdprComplaiant extends LitElement {
 }
 
 
-window.customElements.define('granite-youtube-gdpr-complaiant', youtubeGdprComplaiant);
+window.customElements.define('granite-youtube-gdpr-compliant', youtubeGdprComplaiant);
 
 
