@@ -1,5 +1,5 @@
-import { V, w } from './common/lit-html-c7f09ba6.js';
-export { T as html } from './common/lit-html-c7f09ba6.js';
+import { V, w } from './common/lit-html-487cb6fb.js';
+export { T as html } from './common/lit-html-487cb6fb.js';
 
 /**
  * @license

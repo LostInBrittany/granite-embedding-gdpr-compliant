@@ -1,7 +1,17 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css } from '../_snowpack/pkg/lit.js';
 
+window.tc_closePrivacyButton_orig = window.tc_closePrivacyButton;
+window.tc_closePrivacyButton = function() {
+  console.log('Privacy button closed');
+  document.dispatchEvent(new Event('privacy-center-changed'));
+  window.tc_closePrivacyButton_orig();
+}
 
-export class youtubeGdprComplaiant extends LitElement {
+const getCookieValue = (name) => (
+  document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+)
+
+export class youtubeGdprCompliant extends LitElement {
   static get styles() {
     return [
       css`
@@ -85,6 +95,7 @@ export class youtubeGdprComplaiant extends LitElement {
   constructor() {
     super();
     this.accepted=false;
+    document.addEventListener('privacy-center-changed', () => this.privacyCenterChanged());
   }
   static get properties() {
     return {
@@ -93,13 +104,42 @@ export class youtubeGdprComplaiant extends LitElement {
       },
       accepted: {
         type: Boolean,
+        state: true,
       }
     };
   }
-  accept() {
-    console.log('do accept');
-    this.accepted=true;
+  connectedCallback() {
+    super.connectedCallback();
+    this.verifyCookies();
+  }
+  verifyCookies() {
+    let cookieValue = decodeURIComponent(getCookieValue('TC_PRIVACY_CENTER'));
+    if (!cookieValue) {
+      this.accepted = false;
+      console.log('Third part cookies refused');
+      return;
+    }
+    console.log(cookieValue, cookieValue.split(','));
+    if (cookieValue.split(',').indexOf('4') < 0) {
+      this.accepted = false;
+      console.log('Third part cookies refused');
+      return;
+    } 
+    this.accepted = true;
+    console.log('Third part cookies accepted');
+  }
 
+  showPrivacyCenter() {
+    console.log('Showing Privacy Center');
+    window.tc_closePrivacyCenter = function() {
+      console.log('Privacy center closed');
+      document.dispatchEvent(new Event('privacy-center-changed'));
+    }
+    tC.privacyCenter.showPrivacyCenter();
+  }
+  privacyCenterChanged() {
+    console.log('Detected');
+    this.verifyCookies();
   }
   render() {
     return html`
@@ -113,17 +153,18 @@ export class youtubeGdprComplaiant extends LitElement {
             <div id="overlay">
               <p>YouTube conditions the playback of its videos on the deposit of tracers in order to offer you targeted advertising based on your browsing.</p>
 
-              <p>By clicking on "I authorize" the tracers will be deposited and you will be able to view the video. You have the option of withdrawing your consent at any time.</p>
+              <p>In order to watch the video, you need to accept the <i>Sharing cookies on third-party platforms</i> privacy category in our Privacy Center. You have the option of withdrawing your consent at any time.</p>
 
-              <p>By clicking on "I refuse", you will not be able to access the video.</p>
-
-              <p><a href="https://policies.google.com/privacy?hl=en&gl=en">
-                For more information, visit the YouTube "cookies" policy
-              </a></p> 
+              <p>For more information,visit <a href="https://policies.google.com/privacy?hl=en&gl=en" target="_blank">
+                  the YouTube cookies policy
+              </a> 
+              and the 
+              <a href="https://www.ovh.ie/support/termsofservice/cookies_ovh.xml" target="_blank">
+                  OVHcloud cookies policy
+              </a>.</p> 
 
               <div id="buttons_panel">
-                <button id="ok" @click="${this.accept}">Accept</button> 
-                <button id="ko">Reject</button> 
+                <button id="ok" @click="${this.showPrivacyCenter}">Show Privacy Center</button> 
               </div>
             </div>
           `
@@ -134,6 +175,6 @@ export class youtubeGdprComplaiant extends LitElement {
 }
 
 
-window.customElements.define('granite-youtube-gdpr-compliant', youtubeGdprComplaiant);
+window.customElements.define('ovhcloud-gdrp-compliant-youtube', youtubeGdprCompliant);
 
 

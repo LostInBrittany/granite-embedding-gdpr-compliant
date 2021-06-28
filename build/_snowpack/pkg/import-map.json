@@ -1,6 +1,8 @@
 {
   "imports": {
+    "fetch-jsonp-es6/src/fetch-jsonp": "./fetch-jsonp-es6/src/fetch-jsonp.js",
     "lit": "./lit.js",
-    "lit-html": "./lit-html.js"
+    "lit-html": "./lit-html.js",
+    "lit/directives/unsafe-html.js": "./lit/directives/unsafe-html.js"
   }
 }

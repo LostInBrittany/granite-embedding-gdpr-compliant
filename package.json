@@ -1,9 +1,9 @@
 {
-  "name": "@granite-elements/granite-youtube-gdpr-compliant",
+  "name": "ovhcloud-gdrp-compliant-embedding-widgets",
   "version": "2.0.0",
-  "description": "A GDPR compliant YouTube viewer",
-  "main": "src/granite-youtube-gdpr-compliant.js",
-  "module": "src/granite-youtube-gdpr-compliant.js",
+  "description": "GDPR compliant YouTube and Twitter widgets",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "serve": "npx es-dev-server --node-resolve --watch",
     "build": "snowpack build"
@@ -26,12 +26,13 @@
   "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lostinbrittany/granite-youtube-gdpr-compliant.git"
+    "url": "git://github.com/lostinbrittany/ovhcloud-gdrp-compliant-embedding-widgets.git"
   },
-  "homepage": "https://github.com/lostinbrittany/granite-youtube-gdpr-compliant",
+  "homepage": "https://github.com/lostinbrittany/ovhcloud-gdrp-compliant-embedding-widgets",
   "license": "MIT",
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.5.0",
+    "fetch-jsonp-es6": "^1.0.7",
     "lit": "^2.0.0-rc.1"
   },
   "devDependencies": {

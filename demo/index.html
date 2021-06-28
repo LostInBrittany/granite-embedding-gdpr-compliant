@@ -13,7 +13,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <title>granite-youtube-gdpr-compliant demo</title>
+    <title>ovhcloud-gdrp-compliant-youtube demo</title>
 
     <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
@@ -25,14 +25,22 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     </style>
   </head>
   <body>
+
     <div class="vertical-section-container centered">
-      <h3>granite-youtube-gdpr-compliant</h3>
+      <h3>ovhcloud-gdrp-compliant-youtube</h3>
       <div id="demo1"></div>
     </div>
+    
+    <div class="vertical-section-container centered">
+      <h3>ovhcloud-gdrp-compliant-twitter</h3>
+      <div id="demo2"></div>
+    </div>
+
 
     <script type="module">
       import { html, render } from 'lit-html';
-      import '../src/granite-youtube-gdpr-compliant.js';
+      import '../src/ovhcloud-gdrp-compliant-youtube.js';
+      import '../src/ovhcloud-gdrp-compliant-twitter.js';
 
         
       document.addEventListener('result', 
@@ -41,13 +49,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         html`
           <p>Here you have an example of a GDPR compliant embedded YouTube video:</p>
           
-          <granite-youtube-gdpr-compliant
+          <ovhcloud-gdrp-compliant-youtube
               video="yZ7SXN7Wct4"
-              debug></granite-youtube-gdpr-compliant>
+              debug></ovhcloud-gdrp-compliant-youtube>
 
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>    
         `,
         document.querySelector('#demo1')
+      );
+
+       render(
+        html`
+
+          <p>Here you have an example of a GDPR compliant embedded Twitter message:</p>
+          
+          <ovhcloud-gdrp-compliant-twitter
+              tweetUrl="https://twitter.com/LostInBrittany/status/1400028026147115008"
+              accepted=true
+              debug></ovhcloud-gdrp-compliant-twitter>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>    
+        `,
+        document.querySelector('#demo2')
       );
     </script>
   </body>
