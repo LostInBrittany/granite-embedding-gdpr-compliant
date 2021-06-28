@@ -108,6 +108,9 @@ export class twitterGdprCompliant extends LitElement {
       tweetUrl: {
         type: String,
       },
+      tweet: {
+        type: String,
+      },
       accepted: {
         type: Boolean,
         state: true,
@@ -125,7 +128,9 @@ export class twitterGdprCompliant extends LitElement {
   }
   connectedCallback() {
     super.connectedCallback();
-    this.getTweetText();
+    if (this.tweetUrl) {
+      this.getTweetText();
+    }
     this.verifyCookies();
   }
   async getTweetText() {
@@ -166,9 +171,6 @@ export class twitterGdprCompliant extends LitElement {
     console.log('Detected');
     this.verifyCookies();
   }
-  createRenderRoot() {
-    return this;
-  }
   render() {
     return html`
       <div id="container">
@@ -190,8 +192,8 @@ export class twitterGdprCompliant extends LitElement {
                 style="position: static; visibility: visible; width: ${this
                   .dataWidth}; height: 498px; display: block; flex-grow: 1;"
                 title="Twitter Tweet"
-                src="https://platform.twitter.com/embed/index.html?dnt=true&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=1400028026147115008&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8000%2Felements%2Ftwitter-embed%2Fdemo%2Findex.htm&amp;widgetsVersion=223fc1c4%3A1596143124634&amp;width=250"
-                data-tweet-id="1400028026147115008"
+                src="https://platform.twitter.com/embed/index.html?dnt=true&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=${this.tweet}&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8000%2Felements%2Ftwitter-embed%2Fdemo%2Findex.htm&amp;widgetsVersion=223fc1c4%3A1596143124634&amp;width=250"
+                data-tweet-id="${this.tweet}"
               >
               </iframe>
             </div>
