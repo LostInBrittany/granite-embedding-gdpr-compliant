@@ -1,18 +1,8 @@
 import { LitElement, html, css } from 'lit';
-import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import { showPrivacyCenter, getCookieValue } from './ovhcloud-privacy-center';
 import fetchJsonp from 'fetch-jsonp-es6/src/fetch-jsonp';
 
 
-window.tc_closePrivacyButton_orig = window.tc_closePrivacyButton;
-window.tc_closePrivacyButton = function() {
-  console.log('Privacy button closed');
-  document.dispatchEvent(new Event('privacy-center-changed'));
-  window.tc_closePrivacyButton_orig();
-}
-
-const getCookieValue = (name) => (
-  document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
-)
 
 export class twitterGdprCompliant extends LitElement {
   static get styles() {
@@ -29,7 +19,11 @@ export class twitterGdprCompliant extends LitElement {
           height: 0;
           padding-bottom: 56.25%;
           overflow: auto;
-        }        
+        }      
+        #container.content {
+          height: 100%;
+          padding-bottom: 0;
+        }  
         #overlay {
           position: absolute;
           top: 0;
@@ -159,21 +153,13 @@ export class twitterGdprCompliant extends LitElement {
     console.log('Third part cookies accepted');
   }
 
-  showPrivacyCenter() {
-    console.log('Showing Privacy Center');
-    window.tc_closePrivacyCenter = function() {
-      console.log('Privacy center closed');
-      document.dispatchEvent(new Event('privacy-center-changed'));
-    }
-    tC.privacyCenter.showPrivacyCenter();
-  }
   privacyCenterChanged() {
     console.log('Detected');
     this.verifyCookies();
   }
   render() {
     return html`
-      <div id="container">
+      <div id="container" class=${ this.accepted ? 'content' : 'cookie'}>
         ${
           this.accepted ? 
           html`
@@ -184,13 +170,12 @@ export class twitterGdprCompliant extends LitElement {
             >
               <iframe
                 sandbox="allow-same-origin allow-scripts ${this.allowPopups}"
-                scrolling="no"
+                scrolling="yes"
                 frameborder="0"
                 loading="lazy"
                 allowtransparency="true"
                 allowfullscreen
-                style="position: static; visibility: visible; width: ${this
-                  .dataWidth}; height: 498px; display: block; flex-grow: 1;"
+                style="position: static; visibility: visible; height: 350px; width: 100%; display: block; flex-grow: 1;"
                 title="Twitter Tweet"
                 src="https://platform.twitter.com/embed/index.html?dnt=true&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=${this.tweet}&amp;lang=en&amp;origin=http%3A%2F%2Flocalhost%3A8000%2Felements%2Ftwitter-embed%2Fdemo%2Findex.htm&amp;widgetsVersion=223fc1c4%3A1596143124634&amp;width=250"
                 data-tweet-id="${this.tweet}"
@@ -215,7 +200,7 @@ export class twitterGdprCompliant extends LitElement {
               </a>.</p> 
 
               <div id="buttons_panel">
-                <button id="ok" @click="${this.showPrivacyCenter}">Show Privacy Center</button> 
+                <button id="ok" @click="${showPrivacyCenter}">Show Privacy Center</button> 
               </div>
             </div>
           `

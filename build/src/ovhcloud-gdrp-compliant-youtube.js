@@ -1,15 +1,5 @@
 import { LitElement, html, css } from '../_snowpack/pkg/lit.js';
-
-window.tc_closePrivacyButton_orig = window.tc_closePrivacyButton;
-window.tc_closePrivacyButton = function() {
-  console.log('Privacy button closed');
-  document.dispatchEvent(new Event('privacy-center-changed'));
-  window.tc_closePrivacyButton_orig();
-}
-
-const getCookieValue = (name) => (
-  document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
-)
+import { showPrivacyCenter, getCookieValue } from './ovhcloud-privacy-center.js';
 
 export class youtubeGdprCompliant extends LitElement {
   static get styles() {
@@ -128,15 +118,6 @@ export class youtubeGdprCompliant extends LitElement {
     this.accepted = true;
     console.log('Third part cookies accepted');
   }
-
-  showPrivacyCenter() {
-    console.log('Showing Privacy Center');
-    window.tc_closePrivacyCenter = function() {
-      console.log('Privacy center closed');
-      document.dispatchEvent(new Event('privacy-center-changed'));
-    }
-    tC.privacyCenter.showPrivacyCenter();
-  }
   privacyCenterChanged() {
     console.log('Detected');
     this.verifyCookies();
@@ -164,7 +145,7 @@ export class youtubeGdprCompliant extends LitElement {
               </a>.</p> 
 
               <div id="buttons_panel">
-                <button id="ok" @click="${this.showPrivacyCenter}">Show Privacy Center</button> 
+                <button id="ok" @click="${showPrivacyCenter}">Show Privacy Center</button> 
               </div>
             </div>
           `
