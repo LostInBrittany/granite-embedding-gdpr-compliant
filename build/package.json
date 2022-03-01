@@ -1,6 +1,6 @@
 {
   "name": "ovhcloud-gdrp-compliant-embedding-widgets",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "GDPR compliant YouTube and Twitter widgets",
   "main": "src/index.js",
   "module": "src/index.js",
